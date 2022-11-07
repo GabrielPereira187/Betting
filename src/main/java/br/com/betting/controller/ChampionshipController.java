@@ -56,6 +56,15 @@ public class ChampionshipController {
         return championshipService.getAllChampionships();
     }
 
+    @DeleteMapping("/deleteChampionshipTeam/{team_id}/{championship_id}")
+    public void deleteTeamC(@PathVariable Integer team_id, @PathVariable Integer championship_id) throws ChampionshipSeasonEmptyException, ChampionshipNameEmptyException {
+        Championship c = championshipService.getChampionshipById(championship_id);
+        Team t = teamService.getTeamById(team_id);
+        c.removeTeam(t);
+        championshipService.newChamp(c);
+    }
+
+
 
 
 }

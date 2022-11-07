@@ -38,4 +38,8 @@ public class Championship implements Serializable {
         championshipTeams.add(team);
     }
 
+    public void removeTeam(Team team){
+        championshipTeams.remove(team);
+    }
+
 }

@@ -47,7 +47,8 @@ public class ChampionshipService {
         if (championshipRepository.findAll().isEmpty())
             throw new EmptyListChampionshipException();
         return championshipRepository.findAll();
-
     }
+
+
 
 }
