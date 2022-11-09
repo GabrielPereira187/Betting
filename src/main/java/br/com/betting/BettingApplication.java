@@ -1,6 +1,7 @@
 package br.com.betting;
 
 import br.com.betting.entity.Championship;
+import br.com.betting.entity.Match;
 import br.com.betting.entity.Team;
 import br.com.betting.repositories.TeamRepository;
 import org.springframework.boot.CommandLineRunner;
