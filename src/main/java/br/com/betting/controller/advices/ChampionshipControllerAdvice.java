@@ -1,7 +1,10 @@
 package br.com.betting.controller.advices;
 
 
-import br.com.betting.exceptions.*;
+import br.com.betting.exceptions.championship.ChampionshipNameEmptyException;
+import br.com.betting.exceptions.championship.ChampionshipNotFoundException;
+import br.com.betting.exceptions.championship.ChampionshipSeasonEmptyException;
+import br.com.betting.exceptions.championship.EmptyListChampionshipException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

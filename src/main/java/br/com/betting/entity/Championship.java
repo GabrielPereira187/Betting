@@ -7,11 +7,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Getter
@@ -24,8 +23,9 @@ public class Championship implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int championship_id;
 
+    @NotBlank(message = "Nome do campeonato nao pode ser vazio")
     private String championship_name;
-
+    @NotBlank(message = "Temporada do campeonato nao pode ser vazia")
     private String championship_season;
     @ManyToMany()
     @JoinTable( name = "team_championship",

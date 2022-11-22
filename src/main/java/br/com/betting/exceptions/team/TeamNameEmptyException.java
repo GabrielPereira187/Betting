@@ -1,4 +1,4 @@
-package br.com.betting.exceptions;
+package br.com.betting.exceptions.team;
 
 public class TeamNameEmptyException extends Exception {
     public TeamNameEmptyException(){

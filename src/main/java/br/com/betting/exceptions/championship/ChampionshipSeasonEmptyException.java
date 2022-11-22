@@ -1,4 +1,4 @@
-package br.com.betting.exceptions;
+package br.com.betting.exceptions.championship;
 
 public class ChampionshipSeasonEmptyException extends Exception{
     public ChampionshipSeasonEmptyException(){

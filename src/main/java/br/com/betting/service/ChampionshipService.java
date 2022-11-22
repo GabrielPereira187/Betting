@@ -1,7 +1,8 @@
 package br.com.betting.service;
 
 import br.com.betting.entity.Championship;
-import br.com.betting.exceptions.*;
+import br.com.betting.exceptions.championship.ChampionshipNotFoundException;
+import br.com.betting.exceptions.championship.EmptyListChampionshipException;
 import br.com.betting.repositories.ChampionshipRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,11 +19,7 @@ public class ChampionshipService {
         return championshipRepository.findById(id).orElseThrow(() -> new ChampionshipNotFoundException(id));
     }
 
-    public Championship newChamp(Championship championship) throws ChampionshipNameEmptyException, ChampionshipSeasonEmptyException {
-        if(championship.getChampionship_name() == null || championship.getChampionship_name().equalsIgnoreCase(""))
-            throw new ChampionshipNameEmptyException();
-        if(championship.getChampionship_season() == null || championship.getChampionship_season().equalsIgnoreCase(""))
-            throw new ChampionshipSeasonEmptyException();
+    public Championship newChamp(Championship championship) {
         return championshipRepository.save(championship);
     }
 
@@ -48,7 +45,4 @@ public class ChampionshipService {
             throw new EmptyListChampionshipException();
         return championshipRepository.findAll();
     }
-
-
-
 }

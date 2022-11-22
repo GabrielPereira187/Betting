@@ -1,18 +1,15 @@
 package br.com.betting.service;
 
 
-import br.com.betting.entity.Championship;
 import br.com.betting.entity.Team;
-import br.com.betting.exceptions.EmptyListTeamException;
-import br.com.betting.exceptions.TeamNameEmptyException;
-import br.com.betting.exceptions.TeamNotFoundException;
-import br.com.betting.repositories.ChampionshipRepository;
+import br.com.betting.exceptions.team.TeamNameNotUnique;
+import br.com.betting.exceptions.team.TeamNotFoundException;
 import br.com.betting.repositories.TeamRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -22,9 +19,7 @@ public class TeamService {
         return teamRepository.findById(id).orElseThrow(() -> new TeamNotFoundException(id));
     }
 
-    public Team newTeam(Team team) throws TeamNameEmptyException {
-        if(team.getTeam_name() == null || team.getTeam_name().equalsIgnoreCase(""))
-            throw new TeamNameEmptyException();
+    public Team newTeam(Team team) {
         return teamRepository.save(team);
     }
 
@@ -45,9 +40,14 @@ public class TeamService {
                 });
     }
 
-    public List<Team> getAllTeams() throws EmptyListTeamException {
-        if (teamRepository.findAll().isEmpty())
-            throw new EmptyListTeamException();
-        return teamRepository.findAll();
+    public Page<Team> getAllTeams(Pageable pageable)  {
+        return teamRepository.findAll(pageable);
+    }
+
+    public boolean findByTeamName(String name) throws TeamNameNotUnique {
+        boolean exists = teamRepository.findByTeam_name(name);
+        if(exists)
+            throw new TeamNameNotUnique(name);
+        return false;
     }
 }

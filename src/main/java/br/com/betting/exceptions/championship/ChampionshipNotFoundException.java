@@ -1,4 +1,4 @@
-package br.com.betting.exceptions;
+package br.com.betting.exceptions.championship;
 
 public class ChampionshipNotFoundException extends RuntimeException {
     public ChampionshipNotFoundException(int id){
